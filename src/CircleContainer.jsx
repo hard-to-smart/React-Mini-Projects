@@ -12,6 +12,8 @@ const StyledCircleContainer = styled.div`
 const CircleContainer = () => {
   const [circle, setCircle] = useState();
   const [circlesArray, setCirclesArray] = useState([]);
+  const [transferArray, setTrasferArray] =useState([]);
+  
   const handleCreateCircle=(e)=>{
     e.preventDefault()
     console.log("circles container clicked")
@@ -21,13 +23,24 @@ const CircleContainer = () => {
     yAxis: e.clientY -20,
     color: '#636363',
    }
+
    setCircle(newCircle);
    setCirclesArray((prevCircles) => [...prevCircles, newCircle]);
   }
 
-  // const handleCirclesArray=()=>{
-  //   setCirclesArray((prevCircles) => [...prevCircles, circle]);
-  // }
+  const checkResetUndoLength=()=>{
+    const buttonValue=(circlesArray.length === 0);
+    return buttonValue
+  }
+
+  const checkRedoLength=()=>{
+    const buttonValue=(transferArray.length === 0);
+    return buttonValue
+  }
+  useEffect(()=>{
+    checkResetUndoLength();
+    checkRedoLength();
+  }, circlesArray, transferArray)
 
 
 
@@ -36,7 +49,7 @@ const CircleContainer = () => {
 
   return (
    <StyledCircleContainer onClick={handleCreateCircle}>
-    <ButtonsContainer />
+    <ButtonsContainer circlesArray={circlesArray} transferArray={transferArray} setCirclesArray={setCirclesArray} setTrasferArray={setTrasferArray} checkRedoLength={checkRedoLength} checkResetUndoLength={checkResetUndoLength}/>
     {circlesArray.map((circle)=>{
        return <Circle key={circle.id} x={circle.xAxis} y={circle.yAxis} color={circle.color} />
     }
@@ -45,4 +58,4 @@ const CircleContainer = () => {
   )
 }
 
-export default CircleContainer
+export default CircleContainer 
