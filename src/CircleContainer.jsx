@@ -10,51 +10,36 @@ const StyledCircleContainer = styled.div`
 `
 
 const CircleContainer = () => {
+
   const [circle, setCircle] = useState();
   const [circlesArray, setCirclesArray] = useState([]);
-  const [transferArray, setTrasferArray] =useState([]);
-  
-  const handleCreateCircle=(e)=>{
+  const [transferArray, setTransferArray] = useState([]);
+
+  const handleCreateCircle = (e) => {
     e.preventDefault()
     console.log("circles container clicked")
-   const newCircle = {
-    id: Date.now(),
-    xAxis: e.clientX -20,
-    yAxis: e.clientY -20,
-    color: '#636363',
-   }
 
-   setCircle(newCircle);
-   setCirclesArray((prevCircles) => [...prevCircles, newCircle]);
+    const newCircle = {
+      id: Date.now(),
+      xAxis: e.clientX - 20,
+      yAxis: e.clientY - 20,
+      color: '#636363',
+    }
+    setCircle(newCircle);
+    setCirclesArray((prevCircles) => [...prevCircles, newCircle]);
   }
+  useEffect(() => {
 
-  const checkResetUndoLength=()=>{
-    const buttonValue=(circlesArray.length === 0);
-    return buttonValue
-  }
-
-  const checkRedoLength=()=>{
-    const buttonValue=(transferArray.length === 0);
-    return buttonValue
-  }
-  useEffect(()=>{
-    checkResetUndoLength();
-    checkRedoLength();
-  }, circlesArray, transferArray)
-
-
-
-  console.log(circle)
-  console.log(circlesArray)
+  }, [circlesArray, transferArray,])
 
   return (
-   <StyledCircleContainer onClick={handleCreateCircle}>
-    <ButtonsContainer circlesArray={circlesArray} transferArray={transferArray} setCirclesArray={setCirclesArray} setTrasferArray={setTrasferArray} checkRedoLength={checkRedoLength} checkResetUndoLength={checkResetUndoLength}/>
-    {circlesArray.map((circle)=>{
-       return <Circle key={circle.id} x={circle.xAxis} y={circle.yAxis} color={circle.color} />
-    }
-    )}
-   </StyledCircleContainer>
+    <StyledCircleContainer onClick={handleCreateCircle}>
+      <ButtonsContainer circlesArray={circlesArray} transferArray={transferArray} setCirclesArray={setCirclesArray} setTransferArray={setTransferArray} resetUndoDisabled={circlesArray.length === 0} redoDisabled={transferArray.length === 0} />
+      {circlesArray.map((circle) => {
+        return <Circle key={circle.id} x={circle.xAxis} y={circle.yAxis} color={circle.color} />
+      }
+      )}
+    </StyledCircleContainer>
   )
 }
 

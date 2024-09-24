@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import Button from "./components/Button"
-import { cloneElement } from "react"
 
 const StyledButtonsContainer = styled.div`
     width: fit;
@@ -10,43 +9,52 @@ const StyledButtonsContainer = styled.div`
     gap: 2em;
     margin-top:0;
     margin-left:0;
-    background-color:#343434;
 `
 
-const ButtonsContainer = ( {circlesArray, transferArray ,setCirclesArray, setTrasferArray, checkResetUndoLength, checkRedoLength }) => {
+const ButtonsContainer = ( {circlesArray, transferArray ,setCirclesArray, setTransferArray , resetUndoDisabled, redoDisabled}) => {
 
   function onReset(e){
     e.stopPropagation()
     console.log("reset clicked")
     setCirclesArray([])
-    setTrasferArray([])
+    setTransferArray([])
   }
-  console.log("clicked on reset",circlesArray, transferArray);
 
   function onUndo(e){
     e.stopPropagation()
     console.log("undo clicked")
-    if(circlesArray.length !== 0){
-    const temp = circlesArray.pop()
-    transferArray.push(temp)
+    if(circlesArray.length >=1){
+    const temp =  circlesArray.pop()
+    setCirclesArray([...circlesArray])
+    setTransferArray([...transferArray, temp])
+    console.log(circlesArray, transferArray)
     }
+    // else{
+    //   setResetUndoDisabled(true)
+    // }
   }
+
+
 
   function onRedo(e){
     e.stopPropagation()
     console.log("redo clicked")
-    if(transferArray.length !== 0 ){
-      const temp = transferArray.pop()
-      circlesArray.push(temp)
+    if(transferArray.length >=1 ){
+      const temp =  transferArray.pop()
+      setTransferArray([...transferArray])
+      setCirclesArray([...circlesArray, temp ])
     }
+    // else{
+    //   setRedoDisabled(true)
+    // }
   }
 
 
   return (
-    <StyledButtonsContainer>
-        <Button label = "Reset" onClickFunction={(e) => onReset(e)} disabled={checkResetUndoLength} />
-        <Button label = "Undo" onClickFunction={(e) =>onUndo(e)} disabled={checkResetUndoLength} />
-        <Button label = "Redo" onClickFunction={(e) => onRedo(e)}  disabled={checkRedoLength}/>
+  <StyledButtonsContainer>
+        <Button label = "Reset" onClickFunction={(e) => onReset(e)} disabled={resetUndoDisabled}  />
+        <Button label = "Undo" onClickFunction={(e) =>onUndo(e)} disabled={resetUndoDisabled} />
+        <Button label = "Redo" onClickFunction={(e) => onRedo(e)}  disabled={redoDisabled}/>
     </StyledButtonsContainer>
   )
 }
