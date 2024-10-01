@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .flip-card {
   background-color: transparent;
   width: 200px;
@@ -19,7 +15,7 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.flip-card:hover .flip-card-inner {
+.flip-card-inner.flipped {
   transform: rotateY(180deg);
 }
 
@@ -37,6 +33,14 @@
 }
 
 .flip-card-back {
+  background-color: #f1f1f1;
   transform: rotateY(180deg);
 }
 
+.grid-mapping{
+  width: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-gap: 2px;
+}

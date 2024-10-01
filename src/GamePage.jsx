@@ -1,10 +1,8 @@
 import React from "react";
-import MemoryDiv from "./MemoryDiv";
-import { imageArray } from "./images";
+import SingleCard from "./SingleCard";
+import MemoryBoard from "./components/MemoryBoard";
 
-const MemoryPage = () => {
-    console.log(imageArray)
-    const imageArray2 = imageArray.slice()
+const GamePage = () => {
 
   return (
 
@@ -16,13 +14,13 @@ const MemoryPage = () => {
         Find all pairs in least time and with minimum clicks
       </h2>
 
-      <div className="bg-orange-400 w-[800px] h-[600px] flex flex-row flex-wrap">
-        {imageArray.map((image, index) =>  
-          <MemoryDiv key={index} path={image.path} />
+        <MemoryBoard/>
+        {/* {imageArray.map((image, index) =>  
+          <SingleCard key={index} path={image.path} />
         )}
         {imageArray2.map((image, index) =>  
-          <MemoryDiv key={index} path={image.path} />
-        )}
+          <SingleCard key={index} path={image.path} />
+        )} */}
         {/* </div> */}
         {/* <div className="flex flex-col flex-wrap gap-2 ">
         
@@ -34,9 +32,8 @@ const MemoryPage = () => {
           <div>Score:</div>
           <div>score</div>
         </div> */}
-      </div>
     </div>
   );
 };
 
-export default MemoryPage;
+export default GamePage;

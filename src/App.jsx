@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import MemoryPage from './MemoryPage'
+import GamePage from './GamePage'
 
 
 function App() {
 
   return (
-    <MemoryPage/>
+    <GamePage/>
   )
 }
 
