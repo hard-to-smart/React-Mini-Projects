@@ -44,3 +44,22 @@
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-gap: 2px;
 }
+.main-container{
+  display: flex;
+  justify-content: center;
+}
+.buttons-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.circle{
+  border-radius: 50%;
+  background-color: teal;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

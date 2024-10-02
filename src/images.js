@@ -9,26 +9,37 @@ export const imageArray = [
     {   
         id:1,
         path:img1,
+        isFlipped: false,
     },
     {
         id:2,
         path:img2,
+        isFlipped: false
+
+
     },
     {
         id:3,
         path:img3,
+        isFlipped: false
+
     },
     {
         id:4,
         path:img4,
+        isFlipped: false
     },
     {
         id:5,
         path:img5,
+        isFlipped: false
+
     },
     {
         id:6,
-        path:img6
+        path:img6,
+        isFlipped: false,
+
     }
 
 ]
