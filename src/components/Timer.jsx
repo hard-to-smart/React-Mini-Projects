@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Popup from "./Popup";
 
 const Timer = () => {
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(60);
 
   useEffect(() => {
     const record= setInterval(() => { 

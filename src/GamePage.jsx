@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SingleCard from "./SingleCard";
 import MemoryBoard from "./components/MemoryBoard";
 import ButtonsContainer from "./components/ButtonsContainer";
 
@@ -7,8 +6,7 @@ const GamePage = () => {
   const [score, setScore] = useState(0);
   const [clicksCount, setClicksCount] = useState(0);
   return (
-
-    <div className="w-screen h-screen justify-center flex flex-col items-center">
+    <div className="body-container">
       <h1 className="text-3xl font-bold text-center">
         How good's your memory?
       </h1>

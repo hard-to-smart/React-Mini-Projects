@@ -1,9 +1,9 @@
-import React from 'react'
 import Timer from './Timer'
 
 const ButtonsContainer = ({score, clicksCount}) => {
   return (
     <div className="buttons-container">
+          <div>Timer:</div>
             <Timer/>
           <div>Score:</div>
           <div className='circle'>{score}</div>
