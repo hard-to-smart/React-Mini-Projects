@@ -6,7 +6,7 @@ const Display = () => {
   const [showInfo, setShowInfo] = useState(false) 
   const [error, setError] = useState(false)
   const [age, setAge] = useState(null);
-
+  const [closePopup, setClosePopup] = useState(false);
   const handleShowInfo=()=>{
     setShowInfo((prev)=> !prev);
   }
@@ -50,8 +50,8 @@ const handleGetAge = (userdob) => {
         }
     </div>
     </div>
-     { age &&
-      <AgeCalculate age={age}/>
+     { age && !closePopup &&
+      <AgeCalculate age={age} setClosePopup = {setClosePopup}/>
      }
      </>
   )
