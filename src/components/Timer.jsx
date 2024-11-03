@@ -1,23 +1,37 @@
-import React, { useEffect, useState } from "react";
-import Popup from "./Popup";
+  import React, { useEffect, useState } from "react";
+  import { useNavigate } from "react-router-dom";
+  const Timer = ({ score }) => {
+    const [timer, setTimer] = useState(30);
+    const navigate = useNavigate();
+    useEffect(() => {
+      const record = setInterval(() => {
+        setTimer((prev) => {
+          if (prev === 1) {
+            clearInterval(record);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
 
-const Timer = () => {
-  const [timer, setTimer] = useState(60);
+      return () => clearInterval(record);
+    }, []);
 
-  useEffect(() => {
-    const record= setInterval(() => { 
-      setTimer((previousTime)=>{
-        if(previousTime === 1){
-        clearInterval(record);
-        }
-        return (previousTime - 1)
-      });
-    }, 1000);
+    useEffect(() => {
+     let timeout = setTimeout(()=>{
+      if(score === 6){
+        alert("You win")
+        navigate('/')
+      }
+      else if(timer === 0){
+        alert("Game Over")
+        navigate('/')
+      }
+     })
+     return () => clearTimeout(timeout)
+    }, [score, timer]);
 
-    return(()=> clearInterval(record))
-  }, []);
+    return <div className="circle">{timer}</div>;
+  };
 
-  return <div className="circle">{timer}</div>;
-};
-
-export default Timer;
+  export default Timer;

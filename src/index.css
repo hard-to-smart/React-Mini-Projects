@@ -91,3 +91,32 @@ h2{
   justify-content: center;
   align-items: center;
 }
+.start-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #494D5F, rgb(221, 221, 221));
+}
+
+.start-button {
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #0d0404;
+  color:#fff;
+  transform: scale(1.05);
+}
+
+.start-button:active {
+  transform: scale(0.95);
+}

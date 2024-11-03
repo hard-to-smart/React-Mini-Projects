@@ -14,7 +14,6 @@ const MemoryBoard = ({ setClicksCount, setScore, score }) => {
   // we declare 2 cards to record them when flipped
   const [card1flipped, setCard1Flipped] = useState();
   const [card2flipped, setCard2Flipped] = useState();
-
   useEffect(() => {
     const shuffledArray = shuffleArray(array);
     setRandomArray(shuffledArray);
@@ -22,9 +21,9 @@ const MemoryBoard = ({ setClicksCount, setScore, score }) => {
     setCard2Flipped(null);
   }, []);
 
-
   // then we define a function to flip the card and increment the count
   const handleFlip = (image) => {
+
     setRandomArray((prev) => {
       return prev.map((el) => {
         if (el.id === image.id) {
@@ -38,15 +37,24 @@ const MemoryBoard = ({ setClicksCount, setScore, score }) => {
   };
   // next we will only allow 2 flips in a row
   const handleStoreInCards = (image) => {
-    if (card1flipped && card2flipped) return;
+    if (card1flipped && card2flipped) {
+      return;
+    }
     if (card1flipped) {
       setCard2Flipped(image);
       handleFlip(image);
-    if (card1flipped.path === image.path) {
-      setScore((prev) => prev + 1);
-      setCard1Flipped(null);
-      setCard2Flipped(null);
-    } else {
+      if (card1flipped.path === image.path) {
+        setScore((prev) => prev + 1);
+        setRandomArray((prev) =>
+        prev.map((el) =>
+          el.id === card1flipped.id || el.id === image.id
+            ? { ...el, flipBack: false }
+            : el
+        )
+      );
+        setCard1Flipped(null);
+        setCard2Flipped(null);
+      } else {
         //flip both cards back
         const timeout = setTimeout(() => {
           setRandomArray((prev) => {
